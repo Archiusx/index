@@ -1,0 +1,188 @@
+<p dir="ltr">&lt;!DOCTYPE html&gt;<br>
+&lt;html lang="en"&gt;<br>
+&lt;head&gt;<br>
+&nbsp; &lt;meta charset="UTF-8" /&gt;<br>
+&nbsp; &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;<br>
+&nbsp; &lt;title&gt;Firebase Auth&lt;/title&gt;<br>
+&nbsp; &lt;link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&amp;display=swap" rel="stylesheet"&gt;<br>
+&nbsp; &lt;style&gt;<br>
+&nbsp;&nbsp;&nbsp; *,<br>
+&nbsp;&nbsp;&nbsp; *:before,<br>
+&nbsp;&nbsp;&nbsp; *:after {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; box-sizing: border-box;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; body {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: #000; /* Black background */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-family: 'Poppins', sans-serif;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 100vh;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; justify-content: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; .background {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 430px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 520px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: absolute;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translate(-50%,-50%);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; left: 50%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; top: 50%;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; .background .shape {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 200px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 200px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: absolute;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 50%;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; .shape:first-child {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: linear-gradient(#1845ad, #23a2f6);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; left: -80px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; top: -80px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; .shape:last-child {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: linear-gradient(to right, #ff512f, #f09819);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; right: -30px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bottom: -80px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; .container {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 400px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 50px 35px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: rgba(255,255,255,0.05);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 10px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; backdrop-filter: blur(15px);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 2px solid rgba(255,255,255,0.1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; z-index: 1;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; .container h2 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 28px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 500;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #fff;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 20px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text-align: center;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; input {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 100%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 12px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 10px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: none;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 5px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: rgba(255,255,255,0.07);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #fff;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 14px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; input::placeholder {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #e5e5e5;<br>
+&nbsp;&nbsp;&nbsp; }</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp; /* Button Styling (btn-53 from Uiverse) */<br>
+&nbsp;&nbsp;&nbsp; .btn-53 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 999px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: block;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 900;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; overflow: hidden;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 1.2rem 3rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: relative;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text-transform: uppercase;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 100%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 20px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: #000;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #fff;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-family: 'Poppins', sans-serif;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;<br>
+&nbsp;&nbsp;&nbsp; }</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp; .btn-53 .original {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: #fff;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #000;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inset: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; place-content: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: absolute;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: transform 0.2s cubic-bezier(0.87, 0, 0.13, 1);<br>
+&nbsp;&nbsp;&nbsp; }</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp; .btn-53:hover .original {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(100%);<br>
+&nbsp;&nbsp;&nbsp; }</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp; .btn-53 .letters {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: inline-flex;<br>
+&nbsp;&nbsp;&nbsp; }</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp; .btn-53 span {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; opacity: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(-15px);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: transform 0.2s cubic-bezier(0.87, 0, 0.13, 1), opacity 0.2s;<br>
+&nbsp;&nbsp;&nbsp; }</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp; .btn-53 span:nth-child(2n) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(15px);<br>
+&nbsp;&nbsp;&nbsp; }</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp; .btn-53:hover span {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; opacity: 1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(0);<br>
+&nbsp;&nbsp;&nbsp; }</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp; .btn-53:hover span:nth-child(2) { transition-delay: 0.1s; }<br>
+&nbsp;&nbsp;&nbsp; .btn-53:hover span:nth-child(3) { transition-delay: 0.2s; }<br>
+&nbsp;&nbsp;&nbsp; .btn-53:hover span:nth-child(4) { transition-delay: 0.3s; }<br>
+&nbsp;&nbsp;&nbsp; .btn-53:hover span:nth-child(5) { transition-delay: 0.4s; }<br>
+&nbsp;&nbsp;&nbsp; .btn-53:hover span:nth-child(6) { transition-delay: 0.5s; }<br>
+&nbsp; &lt;/style&gt;<br>
+&lt;/head&gt;<br>
+&lt;body&gt;<br>
+&nbsp; &lt;div class="background"&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;div class="shape"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;div class="shape"&gt;&lt;/div&gt;<br>
+&nbsp; &lt;/div&gt;<br>
+&nbsp; &lt;div class="container"&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;h2&gt;Register&lt;/h2&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;input type="email" id="registerEmail" placeholder="Email"&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;input type="password" id="registerPassword" placeholder="Password"&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;button class="btn-53" id="registerBtn"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;span class="original"&gt;Sign Up&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;span class="letters"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;span&gt;S&lt;/span&gt;&lt;span&gt;I&lt;/span&gt;&lt;span&gt;G&lt;/span&gt;&lt;span&gt;N&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span&gt;U&lt;/span&gt;&lt;span&gt;P&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/button&gt;</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp; &lt;h2&gt;Login&lt;/h2&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;input type="email" id="loginEmail" placeholder="Email"&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;input type="password" id="loginPassword" placeholder="Password"&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;button class="btn-53" id="loginBtn"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;span class="original"&gt;Log In&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;span class="letters"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;span&gt;L&lt;/span&gt;&lt;span&gt;O&lt;/span&gt;&lt;span&gt;G&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;span&gt;I&lt;/span&gt;&lt;span&gt;N&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;/button&gt;<br>
+&nbsp; &lt;/div&gt;</p>
+<p dir="ltr">&nbsp; &lt;script type="module"&gt;<br>
+&nbsp;&nbsp;&nbsp; import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";<br>
+&nbsp;&nbsp;&nbsp; import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp; const firebaseConfig = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; apiKey: "AIzaSyD_4_adS0YQs8bGMbEvNSpLpW3BpCdvIAU",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; authDomain: "mark1-7ce7e.firebaseapp.com",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; projectId: "mark1-7ce7e",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; storageBucket: "mark1-7ce7e.appspot.com",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; messagingSenderId: "147908886392",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; appId: "1:147908886392:web:7d209960ba65868172128d",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; measurementId: "G-6J34J730EW"<br>
+&nbsp;&nbsp;&nbsp; };</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp; const app = initializeApp(firebaseConfig);<br>
+&nbsp;&nbsp;&nbsp; const auth = getAuth(app);</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp; document.getElementById('registerBtn').addEventListener('click', () =&gt; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const email = document.getElementById('registerEmail').value;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const password = document.getElementById('registerPassword').value;</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; createUserWithEmailAndPassword(auth, email, password)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .then(() =&gt; alert("Account created successfully!"))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .catch((error) =&gt; alert("Error: " + error.message));<br>
+&nbsp;&nbsp;&nbsp; });</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp; document.getElementById('loginBtn').addEventListener('click', () =&gt; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const email = document.getElementById('loginEmail').value;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const password = document.getElementById('loginPassword').value;</p>
+<p dir="ltr">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; signInWithEmailAndPassword(auth, email, password)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .then(() =&gt; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; window.location.href = "https://piyushbit.blogspot.com/2025/02/access-content-page.html?m=1";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; })<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .catch((error) =&gt; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Error: " + error.message);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br>
+&nbsp;&nbsp;&nbsp; });<br>
+&nbsp; &lt;/script&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;</p>
